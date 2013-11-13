@@ -44,5 +44,4 @@ gem 'capistrano', '~> 3.0.1', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem 'slim'
-gem 'bitcoin-ruby'
+gem 'slim-rails'
