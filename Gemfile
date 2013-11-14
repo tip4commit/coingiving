@@ -58,9 +58,5 @@ gem "less-rails"
 gem 'kaminari'
 
 gem 'devise'
-<<<<<<< HEAD
 gem 'activeadmin', github: 'gregbell/active_admin' # no official support for rails4 yet
-=======
-
 gem 'carrierwave'
->>>>>>> cbfa5cbb8cdb788c130ef3c9b8bcc30229ac7cb4
