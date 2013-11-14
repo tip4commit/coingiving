@@ -49,4 +49,9 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
 gem 'slim-rails'
+
+gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'
+
+gem 'kaminari'
