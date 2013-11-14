@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131114091657) do
+ActiveRecord::Schema.define(version: 20131114104445) do
 
   create_table "sponsors", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20131114091657) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar"
   end
 
   add_index "sponsors", ["confirmation_token"], name: "index_sponsors_on_confirmation_token", unique: true

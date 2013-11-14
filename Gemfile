@@ -58,3 +58,5 @@ gem "less-rails"
 gem 'kaminari'
 
 gem 'devise'
+
+gem 'carrierwave'
