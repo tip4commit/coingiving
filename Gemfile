@@ -58,3 +58,4 @@ gem "less-rails"
 gem 'kaminari'
 
 gem 'devise'
+gem 'activeadmin', github: 'gregbell/active_admin' # no official support for rails4 yet
