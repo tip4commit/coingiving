@@ -56,3 +56,5 @@ gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branc
 gem "less-rails"
 
 gem 'kaminari'
+
+gem 'devise'
