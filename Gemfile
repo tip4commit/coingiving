@@ -53,5 +53,6 @@ end
 gem 'slim-rails'
 
 gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'
+gem "less-rails"
 
 gem 'kaminari'
