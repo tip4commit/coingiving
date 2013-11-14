@@ -24,10 +24,8 @@ html lang="en"
         .pull-right
           small
             - if current_sponsor
-              = current_sponsor.full_name
-              | \/
-              = link_to btc_human(current_sponsor.balance), current_sponsor
-              | \/
+              = current_sponsor.id
+              |  / 
               = link_to 'Sign Out', destroy_sponsor_session_path, method: :delete
             - else
               a href=new_sponsor_session_path Sign in
