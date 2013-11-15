@@ -1,0 +1,6 @@
+blockchain_info:
+  callback_secret: asdasdasdasd
+
+aa_logger:
+  info: true
+  error: true

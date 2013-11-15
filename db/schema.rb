@@ -46,6 +46,29 @@ ActiveRecord::Schema.define(version: 20131115212842) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
+  create_table "deposit_addresses", force: true do |t|
+    t.integer  "sponsor_id"
+    t.integer  "project_id"
+    t.string   "bitcoin_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "deposit_addresses", ["project_id"], name: "index_deposit_addresses_on_project_id"
+  add_index "deposit_addresses", ["sponsor_id"], name: "index_deposit_addresses_on_sponsor_id"
+
+  create_table "deposits", force: true do |t|
+    t.integer  "deposit_address_id"
+    t.integer  "amount"
+    t.string   "input_tx"
+    t.integer  "confirmations"
+    t.string   "output_tx"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "deposits", ["deposit_address_id"], name: "index_deposits_on_deposit_address_id"
+
   create_table "projects", force: true do |t|
     t.string   "name"
     t.text     "about"
