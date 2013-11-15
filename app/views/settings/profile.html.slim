@@ -1,2 +1,10 @@
-h1 Settings#profile
-p Find me in app/views/settings/profile.html.slim
+.row
+  .col-md-3
+    = render 'menu'
+  .col-md-9
+    = twitter_bootstrap_form_for(current_sponsor, :url => settings_update_profile_path, html: {}) do |f|
+      h2.form-signin-heading Sign up
+      = f.text_field :name, :autofocus => true
+      = f.text_field :url
+      = f.text_field :location
+      = f.submit 'Save'
