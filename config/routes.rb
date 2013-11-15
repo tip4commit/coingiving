@@ -1,5 +1,6 @@
 Coingiving::Application.routes.draw do
 
+  get "settings/profile"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :sponsors

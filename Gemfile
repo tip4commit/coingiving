@@ -62,3 +62,5 @@ gem 'activeadmin', github: 'gregbell/active_admin' # no official support for rai
 gem 'carrierwave'
 
 gem 'twitter_bootstrap_form_for', github: 'stouset/twitter_bootstrap_form_for'
+
+gem 'gravatar_image_tag'

@@ -24,7 +24,11 @@ html lang="en"
         .pull-right
           small
             - if current_sponsor
+              = gravatar_image_tag current_sponsor.email, gravatar: {size: 23}
+              |  
               = current_sponsor.name
+              |  / 
+              = link_to 'Account', settings_profile_path
               |  / 
               = link_to 'Sign Out', destroy_sponsor_session_path, method: :delete
             - else
