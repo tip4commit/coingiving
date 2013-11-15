@@ -1,6 +1,6 @@
-= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "form-signin", role: "form"}) do |f|
+= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "form-devise", role: "form"}) do |f|
   h2.form-signin-heading Sign in
-  = f.input :email
+  = f.input :email, :autofocus => true
   = f.input :password
   - if devise_mapping.rememberable?
     = f.input :remember_me, as: :boolean

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131114105354) do
+ActiveRecord::Schema.define(version: 20131115135014) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20131114105354) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "avatar"
+    t.string   "name"
   end
 
   add_index "sponsors", ["confirmation_token"], name: "index_sponsors_on_confirmation_token", unique: true

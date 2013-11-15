@@ -1,0 +1,6 @@
+= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "form-devise", role: "form"}) do |f|
+  h2.form-signin-heading Forgot your password?
+  = f.input :email, :autofocus => true
+  = f.button :submit, "Send me reset password instructions", :class => 'btn-primary'
+  p
+    = render "devise/shared/links"
