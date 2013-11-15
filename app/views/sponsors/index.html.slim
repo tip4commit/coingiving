@@ -1,3 +1,15 @@
-ul
-  - @sponsors.each do |sponsor|
-    li= link_to sponsor.name, sponsor
+h1 Sponsors
+p
+  table.table
+    thead
+      tr
+        th Sponsor
+        th Donated
+    tbody
+      - @sponsors.each do |sponsor|
+        tr
+          td
+            = gravatar_image_tag sponsor.email, gravatar: {size: 25}
+            strong= link_to sponsor.name, sponsor
+          td= sponsor.deposits.sum(:amount)
+  = paginate @sponsors

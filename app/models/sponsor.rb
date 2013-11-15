@@ -9,4 +9,7 @@ class Sponsor < ActiveRecord::Base
 
   validates :name, presence: true
   validates :url, url: true
+
+  has_many :deposit_addresses
+  has_many :deposits, :through => :deposit_addresses
 end
