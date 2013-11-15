@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sponsor_project_id: 
+  amount: 1
+  input_tx: MyString
+  confirmations: 1
+  output_tx: MyString
+
+two:
+  sponsor_project_id: 
+  amount: 1
+  input_tx: MyString
+  confirmations: 1
+  output_tx: MyString

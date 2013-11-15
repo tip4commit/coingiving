@@ -1,0 +1,9 @@
+h1 = @project.name
+p = @project.about
+p = link_to @project.url, @project.url
+p
+  - if current_sponsor.nil?
+    | Please sign in
+  - else
+    | Deposit to 
+    = @project.deposit_address(current_sponsor) ? @project.deposit_address(current_sponsor).bitcoin_address : "n/a"

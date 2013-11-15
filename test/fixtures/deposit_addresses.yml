@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sponsor_id: 
+  project_id: 
+  bitcoin_address: MyString
+
+two:
+  sponsor_id: 
+  project_id: 
+  bitcoin_address: MyString
