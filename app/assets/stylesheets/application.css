@@ -8,8 +8,10 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require_tree .
+ *= require bootstrap_and_overrides
+ *= require justified_nav
+ *= require sign_in
+ *= require_self 
  */
 
 @font-face {font-family: 'Code-Pro-Light-Demo';src: url('/webfonts/28BE49_0_0.eot');src: url('/webfonts/28BE49_0_0.eot?#iefix') format('embedded-opentype'),url('/webfonts/28BE49_0_0.woff') format('woff'),url('/webfonts/28BE49_0_0.ttf') format('truetype');}

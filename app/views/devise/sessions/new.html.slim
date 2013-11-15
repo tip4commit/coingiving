@@ -1,0 +1,9 @@
+= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "form-signin", role: "form"}) do |f|
+  h2.form-signin-heading Sign in
+  = f.input :email
+  = f.input :password
+  - if devise_mapping.rememberable?
+    = f.input :remember_me, as: :boolean
+  = f.button :submit, "Sign in", :class => 'btn-primary'
+  p
+    = render "devise/shared/links"
