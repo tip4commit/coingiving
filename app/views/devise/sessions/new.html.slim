@@ -1,9 +1,11 @@
-= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "form-devise", role: "form"}) do |f|
+= twitter_bootstrap_form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "form-devise"}) do |f|
   h2.form-signin-heading Sign in
-  = f.input :email, :autofocus => true
-  = f.input :password
+  = devise_error_messages!
+  = f.email_field :email, :autofocus => true
+  = f.password_field :password
   - if devise_mapping.rememberable?
-    = f.input :remember_me, as: :boolean
-  = f.button :submit, "Sign in", :class => 'btn-primary'
+    = f.check_box :remember_me, "Remember me"
+    br
+  = f.submit "Sign in"
   p
     = render "devise/shared/links"

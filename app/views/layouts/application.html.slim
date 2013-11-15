@@ -24,11 +24,13 @@ html lang="en"
         .pull-right
           small
             - if current_sponsor
-              = current_sponsor.id
+              = current_sponsor.name
               |  / 
               = link_to 'Sign Out', destroy_sponsor_session_path, method: :delete
             - else
               a href=new_sponsor_session_path Sign in
+              |  / 
+              a href=new_sponsor_registration_path Sign up
         h3.text-muted.code-pro CoinGiving
         = render 'common/menu'
       - if flash[:alert]

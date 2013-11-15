@@ -61,4 +61,4 @@ gem 'devise'
 gem 'activeadmin', github: 'gregbell/active_admin' # no official support for rails4 yet
 gem 'carrierwave'
 
-gem 'simple_form'
+gem 'twitter_bootstrap_form_for', github: 'stouset/twitter_bootstrap_form_for'

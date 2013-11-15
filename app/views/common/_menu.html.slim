@@ -3,6 +3,8 @@ ul.nav.nav-justified
     a href=root_path  Home
   li class=(controller_name == 'projects' || @project ? 'active' : '')
     a href=projects_path  Supported Projects
+  li class=(controller_name == 'sponsors' || @sponsor ? 'active' : '')
+    a href=sponsors_path  Sponsors
   /! %li
   /!   %a{href: "#"} About
   /! %li
