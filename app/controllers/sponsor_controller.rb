@@ -1,4 +1,4 @@
-class SettingsController < ApplicationController
+class SponsorController < ApplicationController
 
   before_filter :authenticate_sponsor!
 
@@ -7,7 +7,7 @@ class SettingsController < ApplicationController
 
   def update_profile
     if current_sponsor.update sponsor_params
-      redirect_to :back, notice: 'Profile updated'
+      redirect_to sponsor_profile_path, notice: 'Profile updated'
     else
       render :profile
     end

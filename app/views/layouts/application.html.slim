@@ -28,7 +28,7 @@ html lang="en"
               |  
               = current_sponsor.name
               |  / 
-              = link_to 'Account', settings_profile_path
+              = link_to 'Account', sponsor_profile_path
               |  / 
               = link_to 'Sign Out', destroy_sponsor_session_path, method: :delete
             - else
