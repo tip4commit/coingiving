@@ -7,4 +7,10 @@
       = f.text_field :name, :autofocus => true
       = f.text_field :url
       = f.text_field :location
+      .form-group
+        label Avatar
+        div 
+          = gravatar_image_tag current_sponsor.email, gravatar: {size: 25}
+          |  
+          = link_to 'Change the avatar at gravatar.com.', 'https://www.gravatar.com/', target: '_blank'
       = f.submit 'Save'
