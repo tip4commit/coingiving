@@ -24,7 +24,7 @@ html lang="en"
         .pull-right
           small
             - if current_sponsor
-              = current_sponsor.id
+              = current_sponsor.name
               |  / 
               = link_to 'Sign Out', destroy_sponsor_session_path, method: :delete
             - else
