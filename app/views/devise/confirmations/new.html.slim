@@ -1,6 +1,7 @@
-= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form-devise", role: "form"}) do |f|
+= twitter_bootstrap_form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "form-devise"}) do |f|
   h2.form-signin-heading Resend confirmation instructions
-  = f.input :email, :autofocus => true
-  = f.button :submit, "Resend confirmation instructions", :class => 'btn-primary'
+  = devise_error_messages!
+  = f.email_field :email, :autofocus => true
+  = f.submit "Resend confirmation instructions"
   p
     = render "devise/shared/links"
