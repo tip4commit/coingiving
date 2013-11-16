@@ -12,4 +12,5 @@ class Sponsor < ActiveRecord::Base
 
   has_many :deposit_addresses
   has_many :deposits, :through => :deposit_addresses
+  has_many :projects, :through => :deposit_addresses
 end

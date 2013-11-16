@@ -13,6 +13,10 @@ class SponsorController < ApplicationController
     end
   end
 
+  def projects
+    @projects = current_sponsor.projects.page(params[:page]).per(30)
+  end
+
     private
 
   def sponsor_params
