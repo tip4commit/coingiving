@@ -3,6 +3,7 @@ Coingiving::Application.routes.draw do
   get "sponsor/profile"
   patch "sponsor/update_profile"
   get "sponsor/projects"
+  get "sponsor/donations"
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

@@ -17,6 +17,10 @@ class SponsorController < ApplicationController
     @projects = current_sponsor.projects.page(params[:page]).per(30)
   end
 
+  def donations
+    @deposits = current_sponsor.deposits.order(:created_at => :desc).page(params[:page]).per(30)
+  end
+
     private
 
   def sponsor_params
