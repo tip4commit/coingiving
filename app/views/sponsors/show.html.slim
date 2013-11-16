@@ -1,5 +1,6 @@
-.row
+.row.sponsor-page
   .col-md-3
     = gravatar_image_tag @sponsor.email, gravatar: {size: 200}
     h3= @sponsor.name
   .col-md-9
+    = render partial: 'deposits', locals: {deposits: @deposits}
