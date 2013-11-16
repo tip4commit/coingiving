@@ -1,0 +1,18 @@
+table.table
+  thead
+    tr
+      th Time
+      th Project
+      th Donated
+      th Input Transaction
+      th Output Transaction
+  tbody
+    - deposits.each do |deposit|
+      tr
+        td= l deposit.created_at, format: 'short'
+        td
+          strong= link_to deposit.project.name, deposit.project
+        td= deposit.amount
+        td= link_to deposit.input_tx, "https://blockchain.info/tx/#{project.input_tx}", target: :blank 
+        td= link_to deposit.output_tx, "https://blockchain.info/tx/#{project.output_tx}", target: :blank
+= paginate deposits
