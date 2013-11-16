@@ -6,12 +6,12 @@
         li= link_to project.name, project
   .col-md-8
     h1 Sponsors
-    - @sponsors.in_groups_of(3, false) do |sponsors|
+    - @sponsors.in_groups_of(4, false) do |sponsors|
       .row
         - sponsors.each do |sponsor|
-          .col-sm-6.col-md-4
+          .col-sm-3.col-md-3
             .thumbnail
               = link_to gravatar_image_tag(sponsor.email, alt: sponsor.name, class: 'img-responsive', gravatar: {size: 300}), sponsor
               .caption
-                h4= sponsor.name
-                p= btc_human sponsor.deposits.sum(:amount)
+                h5= btc_human sponsor.deposits.sum(:amount)
+                small= link_to sponsor.name, sponsor
