@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
+  
   def index
-    @projects = Project.order(name: :asc).page(params[:page]).per(30)
+    @projects = Project.order(created_at: :desc).page(params[:page]).per(30)
     @sponsors = Sponsor.page(params[:page]).per(60)
   end
 
