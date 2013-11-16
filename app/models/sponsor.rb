@@ -17,4 +17,9 @@ class Sponsor < ActiveRecord::Base
   def to_param
     "#{id}-#{name.parameterize}"
   end
+
+  def project_budget project_id
+    deposit_address = deposit_addresses.find_by_project_id(project_id)
+    deposit_address.nil? ? 0 : deposit_address.budget
+  end
 end
