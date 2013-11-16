@@ -2,14 +2,24 @@
   .col-md-3
     .panel.panel-default
       .panel-body
-        h4= @sponsor.name
+        legend
+          = @sponsor.name
         = gravatar_image_tag @sponsor.email, class: 'img-responsive', gravatar: {size: 300}
-        p= @sponsor.location
+        hr
+        - unless @sponsor.location.blank?
+          p
+            = glyph :map_marker
+            |  
+            = @sponsor.location
         - unless @sponsor.url.blank?
-          p= link_to 'website', @sponsor.url, target: :blank
-        p
-          strong Donated: 
-          = btc_human @sponsor.deposits.sum(:amount)
+          p
+            = glyph(:globe)
+            |  
+            = link_to @sponsor.url.truncate(30), @sponsor.url, target: :blank
+        - if @sponsor.deposits.sum(:amount) > 0
+          p
+            strong Donated: 
+            = btc_human @sponsor.deposits.sum(:amount)
   .col-md-9
     - if @sponsor.private_donations
       | This user deceided not to show the list of projects he or she helped.
