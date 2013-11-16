@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131115223516) do
+ActiveRecord::Schema.define(version: 20131116182404) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20131115223516) do
     t.string   "bitcoin_address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "budget",          limit: 8
   end
 
   add_index "deposit_addresses", ["project_id"], name: "index_deposit_addresses_on_project_id"
@@ -59,7 +60,7 @@ ActiveRecord::Schema.define(version: 20131115223516) do
 
   create_table "deposits", force: true do |t|
     t.integer  "deposit_address_id"
-    t.integer  "amount"
+    t.integer  "amount",             limit: 8
     t.string   "input_tx"
     t.integer  "confirmations"
     t.string   "output_tx"

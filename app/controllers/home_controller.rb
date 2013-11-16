@@ -42,9 +42,10 @@ class HomeController < ApplicationController
           confirmations: params[:confirmations],
           amount: params[:value].to_i
         })
-      ) if !test
+      ) if !test     
       AaLogger.info "Deposit created! #{deposit.inspect}"
       render :text => "Deposit #{deposit[:txid]} has been created!"
+      deposit_address.update_budget
     else
       AaLogger.error "Error: Project with deposit address #{params[:input_address]} is not found!"
       render :text => "Project with deposit address #{params[:input_address]} is not found!"

@@ -7,3 +7,14 @@ p
   - else
     | Deposit to 
     = @project.deposit_address(current_sponsor) ? @project.deposit_address(current_sponsor).bitcoin_address : "n/a"
+h2 Sponsors
+p
+  - @project.sponsors.in_groups_of(4, false) do |sponsors|
+    .row
+      - sponsors.each do |sponsor|
+        .col-sm-3.col-md-3
+          .thumbnail
+            = link_to gravatar_image_tag(sponsor.email, alt: sponsor.name, class: 'img-responsive', gravatar: {size: 300}), sponsor
+            .caption
+              h5= btc_human sponsor.deposits.sum(:amount)
+              small= link_to sponsor.name, sponsor
