@@ -4,6 +4,6 @@ class DepositAddress < ActiveRecord::Base
   has_many :deposits
   def update_budget
     amount = Deposit.where("created_at > '#{Time.now-30.days}' and deposit_address_id=?",1).sum(:amount)
-    update_attribue :budget, amount
+    update_attribute :budget, amount
   end
 end
