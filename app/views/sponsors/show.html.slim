@@ -11,4 +11,10 @@
           strong Donated: 
           = btc_human @sponsor.deposits.sum(:amount)
   .col-md-9
-    = render partial: 'deposits', locals: {deposits: @deposits}
+    - if @sponsor.private_donations
+      | This user deceided not to show the list of projects he or she helped.
+    - else
+      - if @deposits.count > 0
+        = render partial: 'deposits', locals: {deposits: @deposits}
+      - else
+        | This user hasn't helped any project yet.
