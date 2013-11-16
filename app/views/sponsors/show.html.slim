@@ -3,7 +3,7 @@
     .panel.panel-default
       .panel-body
         h4= @sponsor.name
-        = gravatar_image_tag @sponsor.email, class: 'img-responsive', gravatar: {size: 200}
+        = gravatar_image_tag @sponsor.email, class: 'img-responsive', gravatar: {size: 300}
         p= @sponsor.location
         - unless @sponsor.url.blank?
           p= link_to 'website', @sponsor.url

@@ -1,11 +1,11 @@
 .row
   .col-md-4
-    h1 Projects
+    h1 New Projects
     ul
       - @projects.each do |project|
         li= link_to project.name, project
   .col-md-8
-    h1 Sponsors
+    h1 Top Sponsors
     - @sponsors.in_groups_of(4, false) do |sponsors|
       .row
         - sponsors.each do |sponsor|
