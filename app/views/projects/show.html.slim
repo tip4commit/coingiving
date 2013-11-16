@@ -37,7 +37,7 @@ h2
       - @project_sponsors.in_groups_of(4, false) do |sponsors|
         .row
           - sponsors.each do |sponsor|
-            .col-sm-3.col-md-3
+            .col-sm-3.col-md-3 style="min-width:150px"
               .thumbnail
                 = link_to gravatar_image_tag(sponsor.email, alt: sponsor.name, class: 'img-responsive', gravatar: {size: 150}), sponsor
                 .caption
