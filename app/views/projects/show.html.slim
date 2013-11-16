@@ -13,21 +13,22 @@ h2
         = link_to 'donation page', @project.donation_page_url
 
     h3 Donate
-    - if current_sponsor.nil?
-      p
-        | Please 
-        = link_to 'sign in', new_sponsor_session_path
-        |  to generate Bitcoin address for donatoins.
-    - else
-      - if @deposit_address.nil?
-        p = link_to 'Generate Bitcoin Address For Donations', generate_address_project_path(@project), class: 'btn btn-success'
-      - else
-        .qrcode data-qrcode="bitcoin:#{@deposit_address.bitcoin_address}"
+    div style="min-height:150px"
+      - if current_sponsor.nil?
         p
-          | Deposit any amount (> 0.001 Ƀ) to support this project!
-        p 
-          = @deposit_address.bitcoin_address
-    p =link_to "What is Bitcoin?", "http://weusecoins.com", target: :blank
+          | Please 
+          = link_to 'sign in', new_sponsor_session_path
+          |  to generate Bitcoin address for donatoins.
+      - else
+        - if @deposit_address.nil?
+          p = link_to 'Generate Bitcoin Address For Donations', generate_address_project_path(@project), class: 'btn btn-success'
+        - else
+          .qrcode data-qrcode="bitcoin:#{@deposit_address.bitcoin_address}"
+          p
+            | Deposit any amount (> 0.001 Ƀ) to support this project!
+          p 
+            = @deposit_address.bitcoin_address
+      p =link_to "What is Bitcoin?", "http://weusecoins.com", target: :blank
 
   .col-md-6
 
