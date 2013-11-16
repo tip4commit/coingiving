@@ -37,7 +37,7 @@ class HomeController < ApplicationController
       (
         deposit = Deposit.create({
           deposit_address_id: deposit_address.id,
-          input_tx: params[:input_transaction_hash]
+          input_tx: params[:input_transaction_hash],
           output_tx: params[:transaction_hash],
           confirmations: params[:confirmations],
           amount: params[:value].to_i
