@@ -1,12 +1,20 @@
 .row.sponsor-page
   .col-md-3
-    = gravatar_image_tag @sponsor.email, gravatar: {size: 200}
-    h3= @sponsor.name
-    p= @sponsor.location
-    - unless @sponsor.url.blank?
-      p= link_to 'website', @sponsor.url
-    p
-      strong Donated: 
-      = btc_human @sponsor.deposits.sum(:amount)
+    .panel.panel-default
+      .panel-body
+        h4= @sponsor.name
+        = gravatar_image_tag @sponsor.email, class: 'img-responsive', gravatar: {size: 200}
+        p= @sponsor.location
+        - unless @sponsor.url.blank?
+          p= link_to 'website', @sponsor.url
+        p
+          strong Donated: 
+          = btc_human @sponsor.deposits.sum(:amount)
   .col-md-9
-    = render partial: 'deposits', locals: {deposits: @deposits}
+    - if @sponsor.private_donations
+      | This user deceided not to show the list of projects he or she helped.
+    - else
+      - if @deposits.count > 0
+        = render partial: 'deposits', locals: {deposits: @deposits}
+      - else
+        | This user hasn't helped any project yet.

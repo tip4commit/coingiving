@@ -6,6 +6,9 @@
       = f.text_field :name, :autofocus => true
       = f.text_field :url
       = f.text_field :location
+      = f.label :private_donations do
+        = f.check_box :private_donations
+        |  Hide the list projects I helped
       .form-group
         label Avatar
         div 

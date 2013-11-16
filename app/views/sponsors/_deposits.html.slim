@@ -1,22 +1,25 @@
-table.table
-  thead
-    tr
-      th Time
-      th Project
-      th Donated
-      th Input Transaction
-      th Output Transaction
-  tbody
-    - deposits.each do |deposit|
+- if deposits.count > 0
+  table.table
+    thead
       tr
-        td= l deposit.created_at, format: :short
-        td
-          strong= link_to deposit.project.name, deposit.project
-        td= btc_human deposit.amount
-        td= link_to deposit.input_tx.truncate(20), "https://blockchain.info/tx/#{deposit.input_tx}", target: :blank
-        td
-          - if deposit.output_tx
-            = link_to deposit.output_tx.truncate(20), "https://blockchain.info/tx/#{deposit.output_tx}", target: :blank
-          - else
-            | n/a
-= paginate deposits
+        th Time
+        th Project
+        th Donated
+        th Input Transaction
+        th Output Transaction
+    tbody
+      - deposits.each do |deposit|
+        tr
+          td= l deposit.created_at, format: :short
+          td
+            strong= link_to deposit.project.name, deposit.project
+          td= btc_human deposit.amount
+          td= link_to deposit.input_tx.truncate(20), "https://blockchain.info/tx/#{deposit.input_tx}", target: :blank
+          td
+            - if deposit.output_tx
+              = link_to deposit.output_tx.truncate(20), "https://blockchain.info/tx/#{deposit.output_tx}", target: :blank
+            - else
+              | n/a
+  = paginate deposits
+- else
+  | No deposits yet.

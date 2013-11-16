@@ -24,9 +24,9 @@ html lang="en"
         .pull-right
           small
             - if current_sponsor
-              = gravatar_image_tag current_sponsor.email, gravatar: {size: 23}
+              = link_to gravatar_image_tag(current_sponsor.email, gravatar: {size: 23}), current_sponsor
               |  
-              = current_sponsor.name
+              = link_to current_sponsor.name, current_sponsor
               |  / 
               = link_to 'Account', sponsor_profile_path
               |  / 
