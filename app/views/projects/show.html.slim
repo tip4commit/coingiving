@@ -1,15 +1,25 @@
 h1 = @project.name
-p = @project.about
-p = link_to @project.url, @project.url
-p
-  - if current_sponsor.nil?
-    | Please sign in
-  - else
-    | Deposit to 
-    = @project.deposit_address(current_sponsor) ? @project.deposit_address(current_sponsor).bitcoin_address : "n/a"
+
+.row
+  .col-md-4
+    - if current_sponsor.nil?
+      | Please sign in
+    - else
+      - if @deposit_address.nil?
+        = link_to 'Generate Deposit Address', generate_address_project_path(@project), class: 'btn btn-success'
+      - else
+        .qrcode data-qrcode="bitcoin:#{@deposit_address.bitcoin_address}"
+        | Deposit to bitcoin address: 
+        = @deposit_address.bitcoin_address
+        |  (min: 0.001 btc)
+
+  .col-md-8
+    p = @project.about
+    p = link_to @project.url, @project.url
+
 h2 Sponsors
 p
-  - @project.sponsors.where(:private_donations => false).in_groups_of(4, false) do |sponsors|
+  - @project_sponsors.in_groups_of(4, false) do |sponsors|
     .row
       - sponsors.each do |sponsor|
         .col-sm-3.col-md-3
@@ -18,3 +28,14 @@ p
             .caption
               h5= btc_human sponsor.project_budget(@project.id)
               small= link_to sponsor.name, sponsor
+
+
+- if @project_sponsors.count < 1
+  - if @project.sponsors.count < 1
+    p No active sponsors yet.
+
+- if @project.sponsors.count > 0
+    = @project.sponsors.count
+    |  sponsors supported this project during last 30 days.
+
+p Deposit any amount (> 0.001 btc) to support this project!

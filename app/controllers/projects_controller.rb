@@ -9,6 +9,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find params[:id]
+    @deposit_address = @project.deposit_address(current_sponsor)
+    @project_sponsors = @project.sponsors.where(:private_donations => false)
   end
 
   def generate_address

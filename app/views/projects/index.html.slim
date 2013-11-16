@@ -13,7 +13,7 @@ p
       tr
         th Project
         th Description
-        th Bitcoin address
+        th= current_sponsor.nil? ? "" : "Bitcoin Address"
     tbody
       - @projects.each do |project|
         tr
@@ -26,4 +26,7 @@ p
                 = project.deposit_address(current_sponsor).bitcoin_address
               - else
                 = link_to 'Generate', generate_address_project_path(project), class: 'btn btn-success'
+            - else
+              = link_to 'View', project, class: 'btn btn-success'
+
   = paginate @projects
