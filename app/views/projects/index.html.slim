@@ -1,5 +1,13 @@
 h1 Supported Projects
 p
+  = form_tag projects_path, html: {role: 'form', class: 'form-inline"'}, method: :get do |f|
+    .form-group
+      .row
+        .col-lg-10
+          = text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search'
+        .col-lg-2
+          button type="submit" class="btn form-control btn-default" Find project
+p
   table.table
     thead
       tr
