@@ -3,7 +3,8 @@
     = gravatar_image_tag @sponsor.email, gravatar: {size: 200}
     h3= @sponsor.name
     p= @sponsor.location
-    p= link_to 'website', @sponsor.url
+    - unless @sponsor.url.blank?
+      p= link_to 'website', @sponsor.url
     p
       strong Donated: 
       = btc_human @sponsor.deposits.sum(:amount)
