@@ -10,6 +10,7 @@ p
         tr
           td
             = gravatar_image_tag sponsor.email, gravatar: {size: 25}
+            |  
             strong= link_to sponsor.name, sponsor
           td= sponsor.deposits.sum(:amount)
   = paginate @sponsors
