@@ -16,5 +16,5 @@ p
           .thumbnail
             = link_to gravatar_image_tag(sponsor.email, alt: sponsor.name, class: 'img-responsive', gravatar: {size: 300}), sponsor
             .caption
-              h5= btc_human sponsor.deposits.sum(:amount)
+              h5= btc_human sponsor.project_budget(@project.id)
               small= link_to sponsor.name, sponsor
