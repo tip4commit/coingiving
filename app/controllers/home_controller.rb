@@ -8,22 +8,26 @@ class HomeController < ApplicationController
   # todo: check if remote IP address belongs to blockchain.info
 
     if (params[:secret]!=CONFIG["blockchain_info"]["callback_secret"])
-      render :text => "Invalid secret #{params}!" 
+      AaLogger.error "Invalid secret #{params.inspect}!"      
+      render :text => "Invalid secret #{params.inspect}!" 
       return
     end
 
     test = params[:test]
 
     if params[:value].to_i < 0
-      render :text => "ok";
+      AaLogger.info "*ok*"
+      render :text => "*ok*";
       return
     end
 
-    if deposit = Deposit.find_by_txid(params[:transaction_hash])
+    if deposit = Deposit.find_by_input_tx(params[:input_transaction_hash])
       deposit.update_attribute(:confirmations, confirmations = params[:confirmations]) if !test
       if confirmations > 6 
-        render :text => "ok"
+        AaLogger.info "*ok*"
+        render :text => "*ok*"
       else
+        AaLogger.info "Deposit #{deposit.id} updated!"
         render :text => "Deposit #{deposit.id} updated!"
       end
       return
@@ -33,13 +37,16 @@ class HomeController < ApplicationController
       (
         deposit = Deposit.create({
           deposit_address_id: deposit_address.id,
-          txid: params[:transaction_hash],
+          input_tx: params[:input_transaction_hash]
+          output_tx: params[:transaction_hash],
           confirmations: params[:confirmations],
           amount: params[:value].to_i
         })
       ) if !test
+      AaLogger.info "Deposit created! #{deposit.inspect}"
       render :text => "Deposit #{deposit[:txid]} has been created!"
     else
+      AaLogger.error "Error: Project with deposit address #{params[:input_address]} is not found!"
       render :text => "Project with deposit address #{params[:input_address]} is not found!"
     end    
   end
