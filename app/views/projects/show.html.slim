@@ -9,7 +9,7 @@ p
     = @project.deposit_address(current_sponsor) ? @project.deposit_address(current_sponsor).bitcoin_address : "n/a"
 h2 Sponsors
 p
-  - @project.sponsors.where(:private_donations => nil).in_groups_of(4, false) do |sponsors|
+  - @project.sponsors.where(:private_donations => false).in_groups_of(4, false) do |sponsors|
     .row
       - sponsors.each do |sponsor|
         .col-sm-3.col-md-3

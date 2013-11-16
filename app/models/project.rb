@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
   
   has_many :deposit_addresses
   has_many :deposits, :through => :deposit_addresses
-  has_many :sponsors, :through => :deposit_addresses, :order => 'budget desc' #, :conditions => 'budget > 0' # commented out to process old records
+  has_many :sponsors, :through => :deposit_addresses, :conditions => 'budget > 0', :order => 'budget desc'
 
   validates :url, uniqueness: true, url: true
   validates :donation_page_url, uniqueness: true, url: true
