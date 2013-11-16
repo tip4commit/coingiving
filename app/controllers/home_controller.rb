@@ -22,8 +22,8 @@ class HomeController < ApplicationController
     end
 
     if deposit = Deposit.find_by_input_tx(params[:input_transaction_hash])
-      deposit.update_attribute(:confirmations, confirmations = params[:confirmations]) if !test
-      if confirmations > 6 
+      deposit.update_attribute(:confirmations, confirmations = params[:confirmations] ) if !test
+      if confirmations.to_i > 6 
         AaLogger.info "*ok*"
         render :text => "*ok*"
       else
