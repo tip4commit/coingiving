@@ -10,4 +10,8 @@ class Project < ActiveRecord::Base
     user.nil? ? nil : DepositAddress.find_by_project_id_and_sponsor_id(id, user.id)    
   end
 
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+
 end

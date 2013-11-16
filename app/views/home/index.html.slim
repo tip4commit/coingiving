@@ -1,2 +1,10 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+.row
+  .col-md-4
+    h1 Projects
+    ul
+      - @projects.each do |project|
+        li= link_to project.name, project
+  .col-md-8
+    h1 Sponsors
+    - @sponsors.each do |sponsor|
+      = link_to gravatar_image_tag(sponsor.email, alt: sponsor.name, gravatar: {size: 200}), sponsor

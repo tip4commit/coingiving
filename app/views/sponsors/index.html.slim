@@ -9,7 +9,7 @@ p
       - @sponsors.each do |sponsor|
         tr
           td
-            = gravatar_image_tag sponsor.email, gravatar: {size: 25}
+            = gravatar_image_tag sponsor.email, alt: sponsor.name, gravatar: {size: 25}
             |  
             strong= link_to sponsor.name, sponsor
           td= sponsor.deposits.sum(:amount)
