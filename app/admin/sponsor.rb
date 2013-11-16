@@ -33,6 +33,6 @@ ActiveAdmin.register Sponsor do
     default_actions
   end
   
-  permit_params :name, :email
+  permit_params :name, :email, :url, :location
   
 end
