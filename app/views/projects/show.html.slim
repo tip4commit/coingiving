@@ -7,10 +7,10 @@ h2
     blockquote = simple_format @project.about
     p 
       | Project 
-      = link_to 'website', @project.url
+      = link_to 'website', @project.url, target: :blank
       - if @project.donation_page_url && @project.url != @project.donation_page_url
         |  and 
-        = link_to 'donation page', @project.donation_page_url
+        = link_to 'donation page', @project.donation_page_url, target: :blank
 
     h3 Donate
     div style="min-height:150px"

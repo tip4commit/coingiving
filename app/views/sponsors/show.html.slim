@@ -6,7 +6,7 @@
         = gravatar_image_tag @sponsor.email, class: 'img-responsive', gravatar: {size: 300}
         p= @sponsor.location
         - unless @sponsor.url.blank?
-          p= link_to 'website', @sponsor.url
+          p= link_to 'website', @sponsor.url, target: :blank
         p
           strong Donated: 
           = btc_human @sponsor.deposits.sum(:amount)
