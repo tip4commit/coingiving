@@ -2,5 +2,10 @@
   .col-md-3
     = gravatar_image_tag @sponsor.email, gravatar: {size: 200}
     h3= @sponsor.name
+    p= @sponsor.location
+    p= link_to 'website', @sponsor.url
+    p
+      strong Donated: 
+      = btc_human @sponsor.deposits.sum(:amount)
   .col-md-9
     = render partial: 'deposits', locals: {deposits: @deposits}

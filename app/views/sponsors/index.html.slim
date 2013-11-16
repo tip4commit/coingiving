@@ -12,5 +12,5 @@ p
             = gravatar_image_tag sponsor.email, alt: sponsor.name, gravatar: {size: 25}
             |  
             strong= link_to sponsor.name, sponsor
-          td= sponsor.deposits.sum(:amount)
+          td= btc_human sponsor.deposits.sum(:amount)
   = paginate @sponsors
