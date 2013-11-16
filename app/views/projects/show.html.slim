@@ -1,21 +1,30 @@
 h1 = @project.name
-
 .row
-  .col-md-4
+  .col-md-5
     - if current_sponsor.nil?
-      | Please sign in
+      p
+        | Please 
+        = link_to 'sign in', new_sponsor_session_path
+        |  to generate Bitcoin address for donatoins.
     - else
       - if @deposit_address.nil?
-        = link_to 'Generate Deposit Address', generate_address_project_path(@project), class: 'btn btn-success'
+        p = link_to 'Generate Bitcoin Address For Donations', generate_address_project_path(@project), class: 'btn btn-success'
       - else
         .qrcode data-qrcode="bitcoin:#{@deposit_address.bitcoin_address}"
-        | Deposit to bitcoin address: 
-        = @deposit_address.bitcoin_address
-        |  (min: 0.001 btc)
+        p
+          | Deposit any amount (> 0.001 Ƀ) to support this project!
+        p 
+          = @deposit_address.bitcoin_address
+    p =link_to "What is Bitcoin?", "http://weusecoins.com"
 
-  .col-md-8
-    p = @project.about
-    p = link_to @project.url, @project.url
+  .col-md-7
+    p = simple_format @project.about
+    p 
+      | Project 
+      = link_to 'website', @project.url
+      - if @project.donation_page_url && @project.url != @project.donation_page_url
+        |  and 
+        = link_to 'donation page', @project.donation_page_url
 
 h2 Sponsors
 p
@@ -37,5 +46,3 @@ p
 - if @project.sponsors.count > 0
     = @project.sponsors.count
     |  sponsors supported this project during last 30 days.
-
-p Deposit any amount (> 0.001 btc) to support this project!
