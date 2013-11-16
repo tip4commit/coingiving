@@ -9,14 +9,14 @@ table.table
   tbody
     - deposits.each do |deposit|
       tr
-        td= l deposit.created_at, format: 'short'
+        td= l deposit.created_at, format: :short
         td
           strong= link_to deposit.project.name, deposit.project
         td= deposit.amount
-        td= link_to deposit.input_tx, "https://blockchain.info/tx/#{deposit.input_tx}", target: :blank
+        td= link_to deposit.input_tx.truncate(10), "https://blockchain.info/tx/#{deposit.input_tx}", target: :blank
         td
           - if deposit.output_tx
-            = link_to deposit.output_tx, "https://blockchain.info/tx/#{deposit.output_tx}", target: :blank
+            = link_to deposit.output_tx.truncate(10), "https://blockchain.info/tx/#{deposit.output_tx}", target: :blank
           - else
             | n/a
 = paginate deposits
