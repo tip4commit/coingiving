@@ -1,20 +1,30 @@
 h1 = @project.name
-p = @project.about
-p = link_to @project.url, @project.url
+= simple_format @project.about
+p 
+  | Project 
+  = link_to 'website', @project.url
+  - if @project.donation_page_url && @project.url != @project.donation_page_url
+    |  and 
+    = link_to 'donation page', @project.donation_page_url
 p
   - if current_sponsor.nil?
     | Please sign in
   - else
-    | Deposit to 
-    = @project.deposit_address(current_sponsor) ? @project.deposit_address(current_sponsor).bitcoin_address : "n/a"
-h2 Sponsors
-p
-  - @project.sponsors.where(:private_donations => false).in_groups_of(4, false) do |sponsors|
-    .row
-      - sponsors.each do |sponsor|
-        .col-sm-3.col-md-3
-          .thumbnail
-            = link_to gravatar_image_tag(sponsor.email, alt: sponsor.name, class: 'img-responsive', gravatar: {size: 300}), sponsor
-            .caption
-              h5= btc_human sponsor.project_budget(@project.id)
-              small= link_to sponsor.name, sponsor
+    - if @project.deposit_address(current_sponsor)
+      | Your personal address for donations: 
+      = @project.deposit_address(current_sponsor).bitcoin_address
+    - else
+      = link_to 'Generate address for donations', generate_address_project_path(@project), class: 'btn btn-success'
+
+  - @project.sponsors.where(:private_donations => false).tap do |sponsors|
+    - if sponsors.count > 0
+      h2 Sponsors
+      - sponsors.in_groups_of(4, false) do |sponsors|
+        .row
+          - sponsors.each do |sponsor|
+            .col-sm-3.col-md-3
+              .thumbnail
+                = link_to gravatar_image_tag(sponsor.email, alt: sponsor.name, class: 'img-responsive', gravatar: {size: 300}), sponsor
+                .caption
+                  h5= btc_human sponsor.project_budget(@project.id)
+                  small= link_to sponsor.name, sponsor
