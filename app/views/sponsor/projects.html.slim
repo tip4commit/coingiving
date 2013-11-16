@@ -1,0 +1,18 @@
+.row
+  .col-md-3.side-menu
+    = render 'menu'
+  .col-md-9
+    table.table
+      thead
+        tr
+          th Project
+          th Description
+          th Donated
+      tbody
+        - @projects.each do |project|
+          tr
+            td
+              strong= link_to project.name, project
+            td= project.about
+            td= current_sponsor.deposits.by_project(project).sum(:amount)
+    = paginate @projects
