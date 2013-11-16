@@ -13,18 +13,10 @@ p
       tr
         th Project
         th Description
-        - if current_sponsor
-          th Bitcoin Address
     tbody
       - @projects.each do |project|
         tr
           td
             strong= link_to project.name, project
           td= project.about
-          - if current_sponsor
-            td
-              - if project.deposit_address(current_sponsor)
-                = project.deposit_address(current_sponsor).bitcoin_address
-              - else
-                = link_to 'Generate', generate_address_project_path(project), class: 'btn btn-success'
   = paginate @projects

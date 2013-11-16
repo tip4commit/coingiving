@@ -4,7 +4,7 @@
 
 init = () ->
   $('.qrcode').each () ->
-    $(this).qrcode({text:$(this).attr('data-qrcode'), width:64, height:64});
+    $(this).qrcode({text:$(this).attr('data-qrcode'), width:128, height:128});
 
 $ init
 $(document).on 'page:load', init
