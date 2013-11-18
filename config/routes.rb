@@ -22,6 +22,7 @@ Coingiving::Application.routes.draw do
   resources :projects do
     member do
       get 'generate_address'
+      get 'sponsors'
     end
   end
 

@@ -39,4 +39,9 @@ class ProjectsController < ApplicationController
     redirect_to project_path(@project)
   end
 
+  def sponsors
+    @project = Project.find params[:id]
+    @project_sponsors = @project.sponsors.where(:private_donations => false).order(month_donations: :desc)
+  end
+
 end
