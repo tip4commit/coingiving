@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = Project.order(month_donations: :desc).order(name: :asc).page(params[:page]).per(30)
+    @projects = Project.order(name: :asc).order(month_donations: :desc).page(params[:page]).per(30)
     unless params[:search].blank?
       @projects = @projects.search(:name_or_about_contains => params[:search]).result
     end
@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find params[:id]
     @deposit_address = @project.deposit_address(current_sponsor)
-    @project_sponsors = @project.sponsors.where(:private_donations => false)
+    @project_sponsors = @project.sponsors.where(:private_donations => false).order(month_donations: :desc)
   end
 
   def generate_address
