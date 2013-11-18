@@ -8,6 +8,8 @@ class Project < ActiveRecord::Base
   validates :url, uniqueness: true, url: true
   validates :donation_page_url, uniqueness: true, url: true
 
+  scope :moderated, -> { where("moderated_at is not ?", nil) }
+
   def deposit_address user
     user.nil? ? nil : DepositAddress.find_by_project_id_and_sponsor_id(id, user.id)    
   end

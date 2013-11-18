@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131118164427) do
+ActiveRecord::Schema.define(version: 20131118165600) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20131118164427) do
     t.datetime "updated_at"
     t.string   "donation_page_url"
     t.integer  "month_donations",   limit: 8
-    t.boolean  "moderated",                   default: false
+    t.datetime "moderated_at"
   end
 
   create_table "sponsors", force: true do |t|
