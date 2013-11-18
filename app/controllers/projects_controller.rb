@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = Project.order(name: :asc).page(params[:page]).per(30)
+    @projects = Project.order(month_donations: :desc).order(name: :asc).page(params[:page]).per(30)
     unless params[:search].blank?
       @projects = @projects.search(:name_or_about_contains => params[:search]).result
     end
