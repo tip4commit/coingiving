@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
   
   has_many :deposit_addresses
   has_many :deposits, :through => :deposit_addresses
-  has_many :sponsors, -> { where('month_donations > 0') }, :through => :deposit_addresses
+  has_many :sponsors, -> { where('sponsors.month_donations > 0') }, :through => :deposit_addresses
 
   validates :url, uniqueness: true, url: true
   validates :donation_page_url, uniqueness: true, url: true
