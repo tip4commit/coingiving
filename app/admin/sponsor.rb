@@ -1,5 +1,7 @@
 ActiveAdmin.register Sponsor do
 
+  actions :index, :show, :update, :edit, :destroy
+
   form do |f|
     f.inputs "Details" do
       f.input :name
