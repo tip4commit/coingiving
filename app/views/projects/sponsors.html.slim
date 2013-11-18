@@ -1,0 +1,20 @@
+h3 Sponsors
+p
+  - @project_sponsors.in_groups_of(4, false) do |sponsors|
+    .row
+      - sponsors.each do |sponsor|
+        .col-sm-3.col-md-3 style="min-width:150px"
+          .thumbnail
+            = link_to gravatar_image_tag(sponsor.email, alt: sponsor.name, class: 'img-responsive', gravatar: {size: 150}), sponsor
+            .caption
+              h5= btc_human sponsor.project_budget(@project.id)
+              small= link_to sponsor.name, sponsor
+
+
+- if @project_sponsors.count < 1
+  - if @project.sponsors.count < 1
+    p No active sponsors yet. Be the first to support this project during this month.
+
+- if @project.sponsors.count > 0
+    = @project.sponsors.count
+    |  sponsors supported this project during last 30 days.
