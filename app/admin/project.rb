@@ -2,7 +2,6 @@ ActiveAdmin.register Project do
 
   form do |f|
     f.inputs "Details" do
-      f.input :moderated
       f.input :name
       f.input :url
       f.input :donation_page_url
@@ -14,7 +13,7 @@ ActiveAdmin.register Project do
 
   show do |sposnsor|
     attributes_table do
-      row :moderated
+      row :moderated_at
       row :id
       row :name
       row :url
