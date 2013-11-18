@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   
   def index
-    @projects = Project.order(created_at: :desc).where(moderated: true).page(params[:page]).per(20)
+    @projects = Project.moderated.order(moderated_at: :desc).page(params[:page]).per(20)
     @sponsors = Sponsor.order(month_donations: :desc).where('month_donations > 0').page(params[:page]).per(12)
   end
 

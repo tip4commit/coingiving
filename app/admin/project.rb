@@ -30,14 +30,14 @@ ActiveAdmin.register Project do
     column :name
     column :url
     column :moderated do |project|
-      project.moderated ? "Yes" : link_to("Moderate", moderate_admin_project_path(project))
+      project.moderated_at ? "Yes" : link_to("Moderate", moderate_admin_project_path(project))
     end
     default_actions
   end
 
   member_action :moderate do
     project = Project.find params[:id]
-    project.update moderated: true
+    project.touch :moderated_at
     redirect_to :back
   end
 
