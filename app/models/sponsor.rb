@@ -14,7 +14,7 @@ class Sponsor < ActiveRecord::Base
 
   has_many :deposit_addresses
   has_many :deposits, :through => :deposit_addresses
-  has_many :projects, -> { where('budget > 0') }, :through => :deposit_addresses
+  has_many :projects, -> { where('month_donations > 0') }, :through => :deposit_addresses
 
   def to_param
     "#{id}-#{name.parameterize}"
@@ -24,9 +24,9 @@ class Sponsor < ActiveRecord::Base
     deposit_address = deposit_addresses.find_by_project_id(project_id)
     if deposit_address.nil?
       0
-    else      
-      deposit_address.update_budget if deposit_address.budget.nil?
-      deposit_address.budget
+    else
+      deposit_address.update_donations_cache if deposit_address.month_donations.nil?
+      deposit_address.month_donations
     end
   end
 

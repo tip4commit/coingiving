@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20131118165600) do
     t.string   "bitcoin_address"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "budget",          limit: 8
     t.integer  "month_donations", limit: 8
   end
 
