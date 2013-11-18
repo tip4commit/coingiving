@@ -18,8 +18,9 @@
             = link_to @sponsor.url.truncate(30), @sponsor.url, target: :blank
         - if @sponsor.deposits.sum(:amount) > 0
           p
-            strong Donated: 
-            = btc_human @sponsor.deposits.sum(:amount)
+            = glyph(:bitcoin)
+            |  
+            = btc_human @sponsor.deposits.sum(:amount), btc_sign: ''
   .col-md-9
     - if @sponsor.private_donations
       | This user deceided not to show the list of projects he or she helped.
