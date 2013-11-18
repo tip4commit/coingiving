@@ -2,6 +2,7 @@ ActiveAdmin.register Project do
 
   form do |f|
     f.inputs "Details" do
+      f.input :moderated
       f.input :name
       f.input :url
       f.input :donation_page_url
@@ -13,6 +14,7 @@ ActiveAdmin.register Project do
 
   show do |sposnsor|
     attributes_table do
+      row :moderated
       row :id
       row :name
       row :url
@@ -27,7 +29,16 @@ ActiveAdmin.register Project do
     column :id
     column :name
     column :url
+    column :moderated do |project|
+      project.moderated ? "Yes" : link_to("Moderate", moderate_admin_project_path(project))
+    end
     default_actions
+  end
+
+  member_action :moderate do
+    project = Project.find params[:id]
+    project.update moderated: true
+    redirect_to :back
   end
 
   
@@ -36,7 +47,7 @@ ActiveAdmin.register Project do
   #
   # permit_params :list, :of, :attributes, :on, :model
 
-  permit_params :name, :about, :url, :bitcoin_address, :donation_page_url
+  permit_params :name, :about, :url, :bitcoin_address, :donation_page_url, :moderated
   #
   # or
   #
