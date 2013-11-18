@@ -1,20 +1,41 @@
-h3 Sponsors
-p
-  - @project_sponsors.in_groups_of(4, false) do |sponsors|
-    .row
-      - sponsors.each do |sponsor|
-        .col-sm-3.col-md-3 style="min-width:150px"
-          .thumbnail
-            = link_to gravatar_image_tag(sponsor.email, alt: sponsor.name, class: 'img-responsive', gravatar: {size: 150}), sponsor
-            .caption
-              h5= btc_human sponsor.project_budget(@project.id)
-              small= link_to sponsor.name, sponsor
+doctype html
+html lang="en" 
+  head
+    meta charset="utf-8"
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
+    meta content="" name="description"
+    meta content="" name="author"
+    link href="/favicon.png" rel="shortcut icon"
+    
+    title= "CoinGiving — " + (content_for?(:title) ? yield(:title) : "Donate Bitcoins")
+
+    meta name='description' content=(content_for?(:title) ? yield(:title) : "Donate bitcoins to make world better place.")
+    meta name='keywords' content='charity,help,giving,donor,open source,cotribute,community,bitcoin'
+    /! %meta{:property => 'og:image', :content => asset_path('logo.png')}
+    /! %link{:rel => 'image_src', :type => 'image/png', :href => asset_path('logo.png')}
+
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    
+    = csrf_meta_tags
+  body
+    h3 Sponsors
+    p
+      - @project_sponsors.in_groups_of(4, false) do |sponsors|
+        .row
+          - sponsors.each do |sponsor|
+            .col-sm-3.col-md-3 style="width:150px"
+              .thumbnail
+                = link_to gravatar_image_tag(sponsor.email, alt: sponsor.name, class: 'img-responsive', gravatar: {size: 150}), sponsor
+                .caption
+                  h5= btc_human sponsor.project_budget(@project.id)
+                  small= link_to sponsor.name, sponsor
 
 
-- if @project_sponsors.count < 1
-  - if @project.sponsors.count < 1
-    p No active sponsors yet. Be the first to support this project during this month.
+    - if @project_sponsors.count < 1
+      - if @project.sponsors.count < 1
+        p No active sponsors yet. Be the first to support this project during this month.
 
-- if @project.sponsors.count > 0
-    = @project.sponsors.count
-    |  sponsors supported this project during last 30 days.
+    - if @project.sponsors.count > 0
+        = @project.sponsors.count
+        |  sponsors supported this project during last 30 days.
