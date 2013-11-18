@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131116195135) do
+ActiveRecord::Schema.define(version: 20131118103311) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20131116195135) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "budget",          limit: 8
+    t.integer  "month_donations", limit: 8
   end
 
   add_index "deposit_addresses", ["project_id"], name: "index_deposit_addresses_on_project_id"
@@ -78,15 +79,16 @@ ActiveRecord::Schema.define(version: 20131116195135) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "donation_page_url"
+    t.integer  "month_donations",   limit: 8
   end
 
   create_table "sponsors", force: true do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                            default: "",    null: false
+    t.string   "encrypted_password",               default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",                    default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -101,7 +103,8 @@ ActiveRecord::Schema.define(version: 20131116195135) do
     t.string   "name"
     t.string   "url"
     t.string   "location"
-    t.boolean  "private_donations",      default: false
+    t.boolean  "private_donations",                default: false
+    t.integer  "month_donations",        limit: 8
   end
 
   add_index "sponsors", ["confirmation_token"], name: "index_sponsors_on_confirmation_token", unique: true

@@ -1,4 +1,6 @@
 class Sponsor < ActiveRecord::Base
+  include Concerns::DonationsCache
+  
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -27,5 +29,5 @@ class Sponsor < ActiveRecord::Base
       deposit_address.budget
     end
   end
-  
+
 end

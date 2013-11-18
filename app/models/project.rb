@@ -1,8 +1,9 @@
 class Project < ActiveRecord::Base
+  include Concerns::DonationsCache
   
   has_many :deposit_addresses
   has_many :deposits, :through => :deposit_addresses
-  has_many :sponsors, :through => :deposit_addresses, :conditions => 'budget > 0', :order => 'budget desc'
+  has_many :sponsors, -> { where('budget > 0') }, :through => :deposit_addresses
 
   validates :url, uniqueness: true, url: true
   validates :donation_page_url, uniqueness: true, url: true
