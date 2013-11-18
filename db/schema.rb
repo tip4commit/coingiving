@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131118103311) do
+ActiveRecord::Schema.define(version: 20131118164441) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20131118103311) do
     t.string   "bitcoin_address"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "budget",          limit: 8
     t.integer  "month_donations", limit: 8
   end
 

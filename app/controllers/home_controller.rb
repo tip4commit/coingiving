@@ -46,7 +46,7 @@ class HomeController < ApplicationController
       ) if !test     
       AaLogger.info "Deposit created! #{deposit.inspect}"
       render :text => "Deposit #{deposit[:txid]} has been created!"
-      deposit_address.update_budget
+      deposit_address.update_donations_cache
     else
       AaLogger.error "Error: Project with deposit address #{params[:input_address]} is not found!"
       render :text => "Project with deposit address #{params[:input_address]} is not found!"
