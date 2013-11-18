@@ -2,7 +2,7 @@ class CacheUpdater
   def self.work_forever
     while true do
       self.work
-      sleep 120
+      sleep 30
     end
   end
 
