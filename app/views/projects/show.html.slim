@@ -12,6 +12,16 @@ h2
         |  and 
         = link_to 'donation page', @project.donation_page_url, target: :blank
 
+      / AddThis Button BEGIN
+      .addthis_toolbox.addthis_default_style.addthis_32x32_style(addthis:data_track_clickback="false" addthis:data_track_addressbar="false")
+        a.addthis_button_preferred_1
+        a.addthis_button_preferred_2
+        a.addthis_button_preferred_3
+        a.addthis_button_preferred_4
+        a.addthis_button_compact
+        a.addthis_counter.addthis_bubble_style
+      / AddThis Button END
+
     h3 Donate
     div style="min-height:150px"
       - if current_sponsor.nil?

@@ -16,6 +16,13 @@
 @font-face {font-family: 'Code-Pro-Light-Demo';src: url('/webfonts/28BE49_0_0.eot');src: url('/webfonts/28BE49_0_0.eot?#iefix') format('embedded-opentype'),url('/webfonts/28BE49_0_0.woff') format('woff'),url('/webfonts/28BE49_0_0.ttf') format('truetype');}
 .code-pro { font-family: Code-Pro-Light-Demo; }
 
+.addthis_counter
+{
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+      box-sizing: content-box;
+}
+
 .form-devise {
   max-width: 430px;
   padding: 15px;
