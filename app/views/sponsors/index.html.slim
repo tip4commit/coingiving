@@ -4,7 +4,8 @@ p
     thead
       tr
         th Sponsor
-        th Donated
+        th Supported projects
+        th Donated/month
     tbody
       - @sponsors.each do |sponsor|
         tr
@@ -12,5 +13,6 @@ p
             = gravatar_image_tag sponsor.email, alt: sponsor.name, gravatar: {size: 25}
             |  
             strong= link_to sponsor.name, sponsor
+          td= sponsor.projects.count
           td= btc_human sponsor.deposits.sum(:amount)
   = paginate @sponsors

@@ -13,10 +13,14 @@ p
       tr
         th Project
         th Description
+        th Sponsors
+        th Donated/month
     tbody
       - @projects.each do |project|
         tr
           td
             strong= link_to project.name, project
           td= project.about
+          td= project.sponsors.count
+          td= btc_human project.month_donations
   = paginate @projects
