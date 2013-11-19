@@ -7,10 +7,7 @@ small
   - else
     | You are not logged in 
     = link_to 'CoinGiving.com', root_url
-    | . 
-    = link_to "Sign in", new_sponsor_session_url, target: :blank
-    |  or 
-    = link_to "Sign up", new_sponsor_registration_url, target: :blank
+    | .
 
 h4
   = @project.name
@@ -36,6 +33,12 @@ p
       = @deposit_address.bitcoin_address
     p
       | Deposit any amount (> 0.001 Ƀ) to support it!
+- else
+  p 
+    = link_to "Sign in", new_sponsor_session_url, target: :blank
+    |  or 
+    = link_to "Sign up", new_sponsor_registration_url, target: :blank
+    |  to get personal deposit address.
 
 p.centered
   a.btn.btn-success href=project_path(@project) target='_blank'
