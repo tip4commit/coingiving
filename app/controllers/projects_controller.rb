@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
         DepositAddress.create({project_id: @project.id, sponsor_id: current_sponsor.id, bitcoin_address: bitcoin_address})
       end
     end
-    redirect_to project_path(@project)
+    redirect_to :back
   end
 
 end

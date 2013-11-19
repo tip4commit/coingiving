@@ -1,12 +1,41 @@
-h3 = @project.name
+small
+  - if current_sponsor
+    | You are logged as 
+    = link_to gravatar_image_tag(current_sponsor.email, gravatar: {size: 23}), sponsor_url(current_sponsor)
+    |  
+    = link_to current_sponsor.name, sponsor_url(current_sponsor), target: :blank
+  - else
+    | You are not logged in 
+    = link_to 'CoinGiving.com', root_url
+    | . 
+    = link_to "Sign in", new_sponsor_session_url, target: :blank
+    |  or 
+    = link_to "Sign up", new_sponsor_registration_url, target: :blank
+
+h4
+  = @project.name
+  |  Top Sponsors
 
 p.centered
   - @project_sponsors.each do |sponsor|
     = link_to gravatar_image_tag(sponsor.email, alt: sponsor.name, gravatar: {size: 100}), sponsor, target: '_blank'
     |  
 
-p = t 'iframe.project_sponsors_count', count: @project.sponsors.count
+p
+  = t 'iframe.project_sponsors_count', count: @project.sponsors.count
+  |   
+  a href=project_path(@project) target='_blank' See all
+
+- if @deposit_address.nil?
+  p = link_to 'Generate Bitcoin Address For Donations', generate_address_project_path(@project), class: 'btn btn-success'
+- else
+  .qrcode data-qrcode="bitcoin:#{@deposit_address.bitcoin_address}"
+  p 
+    strong Your personal address for this project: 
+    = @deposit_address.bitcoin_address
+  p
+    | Deposit any amount (> 0.001 Ƀ) to support it!
 
 p.centered
   a.btn.btn-success href=project_path(@project) target='_blank'
-    | Support at CoinGiving.com
+    | See the project at CoinGiving.com

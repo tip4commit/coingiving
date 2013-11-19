@@ -11,6 +11,7 @@ class HomeController < ApplicationController
 
   def project_sponsors
     @project = Project.find_by_url(params[:url]) || create_project(params[:url])
+    @deposit_address = @project.deposit_address(current_sponsor)
 
     if @project.nil?
       redirect_to root_path, :notice => "Project not found / creation failed"
