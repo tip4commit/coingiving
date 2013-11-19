@@ -15,6 +15,7 @@ html lang="en"
     /! %link{:rel => 'image_src', :type => 'image/png', :href => asset_path('logo.png')}
 
     = stylesheet_link_tag    "iframe", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
     
     = csrf_meta_tags
   body

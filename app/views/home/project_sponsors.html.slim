@@ -1,25 +1,24 @@
-small
-  - if current_sponsor
-    | You are logged as 
-    = link_to gravatar_image_tag(current_sponsor.email, gravatar: {size: 23}), sponsor_url(current_sponsor)
-    |  
-    = link_to current_sponsor.name, sponsor_url(current_sponsor), target: :blank
-  - else
-    | You are not logged in 
-    = link_to 'CoinGiving.com', root_url
-    | .
-
-h4
-  = @project.name
-  - if @project.sponsors.count > 0
-    |  Top Sponsors
+/ small
+/   - if current_sponsor
+/     | You are logged as 
+/     = link_to gravatar_image_tag(current_sponsor.email, gravatar: {size: 23}), sponsor_url(current_sponsor)
+/     |  
+/     = link_to current_sponsor.name, sponsor_url(current_sponsor), target: :blank
+/   - else
+/     | You are not logged in 
+/     = link_to 'CoinGiving.com', root_url
+/     | .
+/ h4
+/   = @project.name
+/   - if @project.sponsors.count > 0
+/     |  Top Sponsors
 
 p.centered
   - @project_sponsors.each do |sponsor|
     = link_to gravatar_image_tag(sponsor.email, alt: sponsor.name, gravatar: {size: 100}), sponsor, target: '_blank'
     |  
 
-p
+p.centered
   = t 'iframe.project_sponsors_count', count: @project.sponsors.count
   - if @project.sponsors.count > 0
     |   
@@ -27,21 +26,22 @@ p
 
 - if current_sponsor
   - if @deposit_address.nil?
-    p = link_to 'Generate Bitcoin Address For Donations', generate_address_project_path(@project), class: 'btn btn-success'
+    p.centered = link_to 'Become a Sponsor', generate_address_project_path(@project), class: 'btn btn-success'
   - else
-    .qrcode data-qrcode="bitcoin:#{@deposit_address.bitcoin_address}"
-    p 
-      strong Your personal address for this project: 
+    p.centered
+      | Your personal address for this project:
+    p.centered
       = @deposit_address.bitcoin_address
-    p
+    .qrcode.centered data-qrcode="bitcoin:#{@deposit_address.bitcoin_address}"
+    p.centered
       | Deposit any amount (> 0.001 Ƀ) to support it!
 - else
-  p 
+  p.centered 
     = link_to "Sign in", new_sponsor_session_url, target: :blank
     |  or 
     = link_to "Sign up", new_sponsor_registration_url, target: :blank
-    |  to get personal deposit address.
+    |  to sponsor this project.
 
 p.centered
-  a.btn.btn-success href=project_path(@project) target='_blank'
+  a.btn href=project_path(@project) target='_blank'
     | See the project at CoinGiving.com
