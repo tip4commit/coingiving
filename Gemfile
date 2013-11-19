@@ -66,3 +66,5 @@ gem 'twitter_bootstrap_form_for', github: 'stouset/twitter_bootstrap_form_for'
 gem 'gravatar_image_tag'
 
 gem 'nokogiri'
+
+gem 'airbrake'

@@ -14,7 +14,8 @@ class Sponsor < ActiveRecord::Base
 
   has_many :deposit_addresses
   has_many :deposits, :through => :deposit_addresses
-  has_many :projects, :through => :deposit_addresses
+  has_many :projects, -> { where('deposit_addresses.month_donations > 0') }, :through => :deposit_addresses
+  # todo fix to whole time donations ^^^
 
   def to_param
     "#{id}-#{name.parameterize}"
