@@ -1,11 +1,12 @@
-a href=project_path(@project) target='_blank'
-  | Support 
-  = @project.name
-  |  through CoinGiving.com
+h3 = @project.name
 
-p.sponsors-list
+p.centered
   - @project_sponsors.each do |sponsor|
     = link_to gravatar_image_tag(sponsor.email, alt: sponsor.name, gravatar: {size: 100}), sponsor, target: '_blank'
     |  
 
 p = t 'iframe.project_sponsors_count', count: @project.sponsors.count
+
+p.centered
+  a.btn.btn-success href=project_path(@project) target='_blank'
+    | Support at CoinGiving.com
