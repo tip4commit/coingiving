@@ -55,10 +55,4 @@ h2
                   small= link_to sponsor.name, sponsor
 
 
-    - if @project_sponsors.count < 1
-      - if @project.sponsors.count < 1
-        p No active sponsors yet. Be the first to support this project during this month.
-
-    - if @project.sponsors.count > 0
-        = @project.sponsors.count
-        |  sponsors supported this project during last 30 days.
+    p = t 'iframe.project_sponsors_count', count: @project.sponsors.count
