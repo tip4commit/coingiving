@@ -26,15 +26,16 @@ p
   |   
   a href=project_path(@project) target='_blank' See all
 
-- if @deposit_address.nil?
-  p = link_to 'Generate Bitcoin Address For Donations', generate_address_project_path(@project), class: 'btn btn-success'
-- else
-  .qrcode data-qrcode="bitcoin:#{@deposit_address.bitcoin_address}"
-  p 
-    strong Your personal address for this project: 
-    = @deposit_address.bitcoin_address
-  p
-    | Deposit any amount (> 0.001 Ƀ) to support it!
+- if current_sponsor
+  - if @deposit_address.nil?
+    p = link_to 'Generate Bitcoin Address For Donations', generate_address_project_path(@project), class: 'btn btn-success'
+  - else
+    .qrcode data-qrcode="bitcoin:#{@deposit_address.bitcoin_address}"
+    p 
+      strong Your personal address for this project: 
+      = @deposit_address.bitcoin_address
+    p
+      | Deposit any amount (> 0.001 Ƀ) to support it!
 
 p.centered
   a.btn.btn-success href=project_path(@project) target='_blank'
