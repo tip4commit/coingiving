@@ -18,11 +18,11 @@ Coingiving::Application.routes.draw do
   root 'home#index'
 
   get '/blockchain_info_callback' => "home#blockchain_info_callback", :as => "blockchain_info_callback"
+  get '/project_sponsors' => "home#project_sponsors", :as => "project_sponsors"
 
   resources :projects do
     member do
       get 'generate_address'
-      get 'sponsors'
     end
   end
 

@@ -1,8 +1,47 @@
+require 'uri'
+require 'open-uri' 
+require 'net/http'
+
 class HomeController < ApplicationController
   
   def index
     @projects = Project.moderated.order(moderated_at: :desc).page(params[:page]).per(20)
     @sponsors = Sponsor.order(month_donations: :desc).where('month_donations > 0').page(params[:page]).per(12)
+  end
+
+  def project_sponsors
+    @project = Project.find_by_url(params[:url]) || create_project(params[:url])
+
+    if @project.nil?
+      redirect_to root_path, :notice => "Project not found / creation failed"
+    else
+      @project_sponsors = @project.sponsors.where(:private_donations => false).order(month_donations: :desc)
+      render :layout => false
+    end
+
+  end
+
+  def create_project url
+    AaLogger.info "Creating project: #{url}"
+    begin
+      doc = Nokogiri::HTML(open(url))
+      iframe_tag = doc.search("iframe[src='http://coingiving.com/project_sponsors?url=#{url}']").first
+      title = doc.search('[data-coingiving="title"]').first.text rescue nil
+      description = doc.search('[data-coingiving="description"]').first.text rescue nil
+      bitcoin_address = doc.search('[data-coingiving="bitcoin-address"]').first.text rescue nil
+
+      if (iframe_tag.count > 0) && title && description && bitcoin_address
+        AaLogger.info "  iframe: #{iframe_tag.inspect} title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
+        Project.create({url: url, name: title, about: description, bitcoin_address: bitcoin_address, donation_page_url: url})
+      else
+        AaLogger.info "  something is missing iframe: #{iframe_tag.inspect} title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
+        nil          
+      end
+
+    rescue StandardError => e
+      AaLogger.info e.inspect
+      nil
+    end
   end
 
   def blockchain_info_callback
