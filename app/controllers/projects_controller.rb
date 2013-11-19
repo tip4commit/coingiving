@@ -39,10 +39,4 @@ class ProjectsController < ApplicationController
     redirect_to project_path(@project)
   end
 
-  def sponsors
-    @project = Project.find params[:id]
-    @project_sponsors = @project.sponsors.public_only.order(month_donations: :desc).first(params[:limit].to_i || 6)
-    render :layout => 'iframe'
-  end
-
 end

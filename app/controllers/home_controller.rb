@@ -15,8 +15,8 @@ class HomeController < ApplicationController
     if @project.nil?
       redirect_to root_path, :notice => "Project not found / creation failed"
     else
-      @project_sponsors = @project.sponsors.where(:private_donations => false).order(month_donations: :desc)
-      render :layout => false
+      @project_sponsors = @project.sponsors.public_only.order(month_donations: :desc).first((params[:limit] || 6).to_i)
+      render :layout => 'iframe'
     end
 
   end
