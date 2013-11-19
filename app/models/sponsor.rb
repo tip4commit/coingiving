@@ -17,6 +17,8 @@ class Sponsor < ActiveRecord::Base
   has_many :projects, -> { where('deposit_addresses.month_donations > 0') }, :through => :deposit_addresses
   # todo fix to whole time donations ^^^
 
+  scope :public_only, -> { where(:private_donations => false) }
+
   def to_param
     "#{id}-#{name.parameterize}"
   end

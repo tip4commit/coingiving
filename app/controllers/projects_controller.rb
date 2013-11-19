@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find params[:id]
     @deposit_address = @project.deposit_address(current_sponsor)
-    @project_sponsors = @project.sponsors.where(:private_donations => false).order(month_donations: :desc)
+    @project_sponsors = @project.sponsors.public_only.order(month_donations: :desc)
   end
 
   def generate_address
@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
 
   def sponsors
     @project = Project.find params[:id]
-    @project_sponsors = @project.sponsors.where(:private_donations => false).order(month_donations: :desc).first(params[:limit].to_i || 6)
+    @project_sponsors = @project.sponsors.public_only.order(month_donations: :desc).first(params[:limit].to_i || 6)
     render :layout => 'iframe'
   end
 
