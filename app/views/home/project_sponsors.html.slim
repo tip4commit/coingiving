@@ -29,18 +29,19 @@ p.centered
     p.centered = link_to 'Become a Sponsor', generate_address_project_path(@project), class: 'btn btn-success'
   - else
     p.centered
-      | Your personal address for this project:
+      = link_to gravatar_image_tag(current_sponsor.email, gravatar: {size: 23}), sponsor_url(current_sponsor)
+      |  
+      = link_to current_sponsor.name, sponsor_url(current_sponsor), target: :blank
+      | , donate (min. 0.001 Ƀ) to:
     p.centered
       = @deposit_address.bitcoin_address
     .qrcode.centered data-qrcode="bitcoin:#{@deposit_address.bitcoin_address}"
-    p.centered
-      | Deposit any amount (> 0.001 Ƀ) to support it!
 - else
   p.centered 
     = link_to "Sign in", new_sponsor_session_url, target: :blank
     |  or 
     = link_to "Sign up", new_sponsor_registration_url, target: :blank
-    |  to sponsor this project.
+    |  to become a sponsor.
 
 p.centered
   a.btn href=project_path(@project) target='_blank'
