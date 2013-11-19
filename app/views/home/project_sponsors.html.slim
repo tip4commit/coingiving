@@ -8,4 +8,4 @@ p.sponsors-list
     = link_to gravatar_image_tag(sponsor.email, alt: sponsor.name, gravatar: {size: 100}), sponsor, target: '_blank'
     |  
 
-p = t 'iframe.project_sponsors_count', count: @project_sponsors.count
+p = t 'iframe.project_sponsors_count', count: @project.sponsors.count

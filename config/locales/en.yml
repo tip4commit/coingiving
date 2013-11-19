@@ -22,6 +22,6 @@
 en:
   iframe:
     project_sponsors_count:
-      zero: "No active sponsors yet. Be the first to support this project during this month."
-      one: "1 sponsor supported this project during last 30 days."
-      other: "%{count} sponsors supported this project during last 30 days."
+      zero: "No sponsors yet. Be the first to support this project."
+      one: "1 sponsor supported this project."
+      other: "%{count} sponsors supported this project."
