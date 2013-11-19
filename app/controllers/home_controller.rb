@@ -15,7 +15,9 @@ class HomeController < ApplicationController
     if @project.nil?
       redirect_to root_path, :notice => "Project not found / creation failed"
     else
-      @project_sponsors = @project.sponsors.public_only.order(month_donations: :desc).first((params[:limit] || 6).to_i)
+      limit = (params[:limit] || 6).to_i
+      limit =  20 if limit > 20
+      @project_sponsors = @project.sponsors.public_only.order(month_donations: :desc).first(limit)
       render :layout => 'iframe'
     end
 
