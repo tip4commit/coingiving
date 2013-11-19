@@ -20,8 +20,9 @@ p.centered
 
 p
   = t 'iframe.project_sponsors_count', count: @project.sponsors.count
-  |   
-  a href=project_path(@project) target='_blank' See all
+  - if @project.sponsors.count > 0
+    |   
+    a href=project_path(@project) target='_blank' see all
 
 - if current_sponsor
   - if @deposit_address.nil?
