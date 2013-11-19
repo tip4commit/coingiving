@@ -11,7 +11,8 @@ small
 
 h4
   = @project.name
-  |  Top Sponsors
+  - if @project.sponsors.count > 0
+    |  Top Sponsors
 
 p.centered
   - @project_sponsors.each do |sponsor|
