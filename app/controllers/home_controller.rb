@@ -19,7 +19,9 @@ class HomeController < ApplicationController
       limit = (params[:limit] || 6).to_i
       limit =  20 if limit > 20
       @project_sponsors = @project.sponsors.public_only.order(month_donations: :desc).first(limit)
-      render :layout => 'iframe'
+      @show_sponsors = params[:mode].nil? || (params[:mode]=="sponsors")
+      @show_buttons  = params[:mode].nil? || (params[:mode]=="buttons")
+      render :layout => "iframe"
     end
 
   end
@@ -28,12 +30,13 @@ class HomeController < ApplicationController
     AaLogger.info "Creating project: #{url}"
     begin
       doc = Nokogiri::HTML(open(url))
-      iframe_tag = doc.search("iframe[src='http://coingiving.com/project_sponsors?url=#{url}']").first
+      # iframe_tag = doc.search("iframe[src='http://coingiving.com/project_sponsors?url=#{url}']").first
       title = doc.search('[data-coingiving="title"]').first.text rescue nil
       description = doc.search('[data-coingiving="description"]').first.text rescue nil
       bitcoin_address = doc.search('[data-coingiving="bitcoin-address"]').first.text rescue nil
 
-      if (iframe_tag.count > 0) && title && description && bitcoin_address
+      # if (iframe_tag.count > 0) && title && description && bitcoin_address
+      if title && description && bitcoin_address
         AaLogger.info "  iframe: #{iframe_tag.inspect} title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
         Project.create({url: url, name: title, about: description, bitcoin_address: bitcoin_address, donation_page_url: url})
       else
