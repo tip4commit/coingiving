@@ -9,7 +9,7 @@ html lang="en"
     
     title= "CoinGiving — " + (content_for?(:title) ? yield(:title) : "Donate Bitcoins")
 
-    meta name='description' content=(content_for?(:title) ? yield(:title) : "Donate bitcoins to make world better place.")
+    meta name='description' content=(content_for?(:description) ? yield(:description) : "Donate bitcoins to make world better place.")
     meta name='keywords' content='charity,help,giving,donor,open source,cotribute,community,bitcoin'
     /! %meta{:property => 'og:image', :content => asset_path('logo.png')}
     /! %link{:rel => 'image_src', :type => 'image/png', :href => asset_path('logo.png')}
