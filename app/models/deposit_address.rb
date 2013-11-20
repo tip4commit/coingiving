@@ -5,4 +5,6 @@ class DepositAddress < ActiveRecord::Base
   belongs_to :project
   has_many :deposits
 
+  validates :bitcoin_address, presence: true, bitcoin_address: true
+
 end

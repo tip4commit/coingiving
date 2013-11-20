@@ -5,8 +5,13 @@ class Project < ActiveRecord::Base
   has_many :deposits, :through => :deposit_addresses
   has_many :sponsors, -> { where('deposit_addresses.month_donations > 0') }, :through => :deposit_addresses
 
-  validates :url, uniqueness: true, url: true
-  validates :donation_page_url, uniqueness: true, url: true
+  validates :url, presence: true, uniqueness: true, url: true
+  validates :donation_page_url, presence: true, uniqueness: true, url: true
+
+  validates :bitcoin_address, presence: true, bitcoin_address: true
+
+  validates :name, presence: true
+  validates :about, presence: true
 
   scope :moderated, -> { where("moderated_at is not ?", nil) }
 
