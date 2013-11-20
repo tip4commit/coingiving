@@ -1,10 +1,17 @@
+.jumbotron
+  h1 Personified Bitcoin Donations
+  div
+    p Donors can donate to projects thus becoming their sponsors.
+    p Projects can use our widget to show sponsors' gravatars on their sites.
+    p Donations are instantly forwarded to recipients free of charge by 
+
 .row
   .col-md-4
     h1 New Projects
     ul
       - @projects.each do |project|
         li= link_to project.name, project
-  .col-md-8
+  .col-md-8.well
     h1 Top Sponsors
     - @sponsors.in_groups_of(4, false) do |sponsors|
       .row
