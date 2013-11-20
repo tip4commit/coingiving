@@ -19,6 +19,8 @@ class Sponsor < ActiveRecord::Base
 
   scope :public_only, -> { where(:private_donations => false) }
 
+  scope :confirmed, -> { where("confirmed_at is not ?", nil) }
+
   def to_param
     "#{id}-#{name.parameterize}"
   end
