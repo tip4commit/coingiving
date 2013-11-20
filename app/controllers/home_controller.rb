@@ -37,10 +37,12 @@ class HomeController < ApplicationController
 
       # if (iframe_tag.count > 0) && title && description && bitcoin_address
       if title && description && bitcoin_address
-        AaLogger.info "  iframe: #{iframe_tag.inspect} title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
+        # AaLogger.info "  iframe: #{iframe_tag.inspect} title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
+        AaLogger.info "  title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
         Project.create({url: url, name: title, about: description, bitcoin_address: bitcoin_address, donation_page_url: url})
       else
-        AaLogger.info "  something is missing iframe: #{iframe_tag.inspect} title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
+        # AaLogger.info "  something is missing iframe: #{iframe_tag.inspect} title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
+        AaLogger.info "  something is missing: title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
         nil          
       end
 
