@@ -19,14 +19,14 @@ h2
     | .
 .row
   .col-md-6
-    h3 Description
-    blockquote = simple_format @project.about
     h3 
       | Project 
       = link_to 'website', @project.url, target: :blank
       - if @project.donation_page_url && @project.url != @project.donation_page_url
         |  and 
         = link_to 'donation page', @project.donation_page_url, target: :blank
+    h3 Description
+    blockquote = simple_format @project.about
 
     h3 Share
     / AddThis Button BEGIN
