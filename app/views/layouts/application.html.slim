@@ -11,8 +11,8 @@ html lang="en"
 
     meta name='description' content=(content_for?(:description) ? yield(:description) : "Donate bitcoins to make world better place.")
     meta name='keywords' content='charity,help,giving,donor,open source,cotribute,community,bitcoin'
-    /! %meta{:property => 'og:image', :content => asset_path('logo.png')}
-    /! %link{:rel => 'image_src', :type => 'image/png', :href => asset_path('logo.png')}
+    meta property='og:image' content=asset_path('wikimedia_donation_jar.jpg')
+    link rel='image_src' type='image/jpeg' href=asset_path('wikimedia_donation_jar.jpg')
 
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
