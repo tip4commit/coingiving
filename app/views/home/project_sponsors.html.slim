@@ -37,9 +37,6 @@ p.centered
       = @deposit_address.bitcoin_address
     .qrcode.centered data-qrcode="bitcoin:#{@deposit_address.bitcoin_address}"
 
-    p.centered
-      a.btn href=project_path(@project) target='_blank'
-        | See the project at CoinGiving.com
 - else
   p.centered 
     / = link_to "Sign in", new_sponsor_session_url, target: :blank
@@ -47,5 +44,5 @@ p.centered
     / = link_to "Sign up", new_sponsor_registration_url, target: :blank
     / |  to become a sponsor.
     | Please 
-    = link_to "Sign in at CoinGiving.com", new_sponsor_session_url, target: :blank
-    |  and reload the page to become a sponsor.
+    = link_to "Sign in", new_sponsor_session_url, target: :blank
+    |  at CoinGiving.com and reload the page to become a sponsor.
