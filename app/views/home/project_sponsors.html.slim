@@ -28,9 +28,7 @@
     p.centered 
       | Please 
       = link_to "Sign in", new_sponsor_session_url, target: :blank
-      |  at CoinGiving.com and reload the page to become a sponsor.
-    p.centered
-      | Or donate anonymously to this address:
+      |  at CoinGiving.com and reload the page or donate anonymously to this address:
     p.centered
       = @project.bitcoin_address
     .qrcode.centered data-qrcode="bitcoin:#{@project.bitcoin_address}"
