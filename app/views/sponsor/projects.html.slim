@@ -14,5 +14,5 @@
             td
               strong= link_to project.name, project
             td= project.about
-            td= current_sponsor.deposits.by_project(project).sum(:amount)
+            td= btc_human current_sponsor.deposits.by_project(project).sum(:amount)
     = paginate @projects
