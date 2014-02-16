@@ -27,7 +27,7 @@ class HomeController < ApplicationController
   end
 
   def create_project url
-    AaLogger.info "Creating project: #{url}"
+    Rails.logger.info "Creating project: #{url}"
     begin
       doc = Nokogiri::HTML(open(url))
       # iframe_tag = doc.search("iframe[src='http://coingiving.com/project_sponsors?url=#{url}']").first
@@ -37,17 +37,17 @@ class HomeController < ApplicationController
 
       # if (iframe_tag.count > 0) && title && description && bitcoin_address
       if title && description && bitcoin_address
-        # AaLogger.info "  iframe: #{iframe_tag.inspect} title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
-        AaLogger.info "  title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
+        # Rails.logger.info "  iframe: #{iframe_tag.inspect} title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
+        Rails.logger.info "  title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
         Project.create({url: url, name: title, about: description, bitcoin_address: bitcoin_address, donation_page_url: url})
       else
-        # AaLogger.info "  something is missing iframe: #{iframe_tag.inspect} title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
-        AaLogger.info "  something is missing: title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
+        # Rails.logger.info "  something is missing iframe: #{iframe_tag.inspect} title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
+        Rails.logger.info "  something is missing: title: #{title} description: #{description} bitcoin_address: #{bitcoin_address}"
         nil          
       end
 
     rescue StandardError => e
-      AaLogger.info e.inspect
+      Rails.logger.info e.inspect
       nil
     end
   end
@@ -56,7 +56,7 @@ class HomeController < ApplicationController
   # todo: check if remote IP address belongs to blockchain.info
 
     if (params[:secret]!=CONFIG["blockchain_info"]["callback_secret"])
-      AaLogger.error "Invalid secret #{params.inspect}!"      
+      Rails.logger.error "Invalid secret #{params.inspect}!"      
       render :text => "Invalid secret #{params.inspect}!" 
       return
     end
@@ -64,7 +64,7 @@ class HomeController < ApplicationController
     test = params[:test]
 
     if params[:value].to_i < 0
-      AaLogger.info "*ok*"
+      Rails.logger.info "*ok*"
       render :text => "*ok*";
       return
     end
@@ -72,10 +72,10 @@ class HomeController < ApplicationController
     if deposit = Deposit.find_by_input_tx(params[:input_transaction_hash])
       deposit.update_attribute(:confirmations, confirmations = params[:confirmations] ) if !test
       if confirmations.to_i > 6 
-        AaLogger.info "*ok*"
+        Rails.logger.info "*ok*"
         render :text => "*ok*"
       else
-        AaLogger.info "Deposit #{deposit.id} updated!"
+        Rails.logger.info "Deposit #{deposit.id} updated!"
         render :text => "Deposit #{deposit.id} updated!"
       end
       return
@@ -91,11 +91,11 @@ class HomeController < ApplicationController
           amount: params[:value].to_i
         })
       ) if !test     
-      AaLogger.info "Deposit created! #{deposit.inspect}"
+      Rails.logger.info "Deposit created! #{deposit.inspect}"
       render :text => "Deposit #{deposit[:txid]} has been created!"
       deposit_address.update_donations_cache
     else
-      AaLogger.error "Error: Project with deposit address #{params[:input_address]} is not found!"
+      Rails.logger.error "Error: Project with deposit address #{params[:input_address]} is not found!"
       render :text => "Project with deposit address #{params[:input_address]} is not found!"
     end    
   end

@@ -7,13 +7,13 @@ class CacheUpdater
   end
 
   def self.work
-    AaLogger.info "Updating sponsors donations cache..."
+    Rails.logger.info "Updating sponsors donations cache..."
     Sponsor.update_donations_cache
 
-    AaLogger.info "Updating projects donations cache..."
+    Rails.logger.info "Updating projects donations cache..."
     Project.update_donations_cache
 
-    AaLogger.info "Updating donation addresses donations cache..."
+    Rails.logger.info "Updating donation addresses donations cache..."
     DepositAddress.update_donations_cache
   end
 
