@@ -64,22 +64,14 @@ Coingiving::Application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   
-  config.action_mailer.default_url_options = { :host => "coingiving.com" }
+  config.action_mailer.default_url_options = { :host => CONFIG['smtp_settings']['domain'] }
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-      address:              "***REMOVED***",
-      port:                 "587",
-      domain:               "coingiving.com",
-      user_name:            "***REMOVED***",
-      password:             "***REMOVED***",
-      authentication:       'plain',
-      enable_starttls_auto: true
-  }
+  config.action_mailer.smtp_settings = CONFIG['smtp_settings'].to_options
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'no-reply@coingiving.com'}
+  config.action_mailer.default_options = {from: 'no-reply@' + CONFIG['smtp_settings']['domain'] }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found).
