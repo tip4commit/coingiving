@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   
   def index
     @projects = Project.moderated.order(moderated_at: :desc).page(params[:page]).per(20)
-    @sponsors = Sponsor.order(month_donations: :desc).where('month_donations > 0').page(params[:page]).per(12)
+    @sponsors = Sponsor.order(year_donations: :desc).where('year_donations > 0').page(params[:page]).per(12)
   end
 
   def project_sponsors
@@ -18,7 +18,7 @@ class HomeController < ApplicationController
     else
       limit = (params[:limit] || 6).to_i
       limit =  20 if limit > 20
-      @project_sponsors = @project.sponsors.public_only.order(month_donations: :desc).first(limit)
+      @project_sponsors = @project.sponsors.public_only.order(year_donations: :desc).first(limit)
       @show_sponsors = params[:mode].nil? || (params[:mode]=="sponsors")
       @show_buttons  = params[:mode].nil? || (params[:mode]=="buttons")
       render :layout => "iframe"

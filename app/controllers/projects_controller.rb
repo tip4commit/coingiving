@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find params[:id]
     @deposit_address = @project.deposit_address(current_sponsor)
-    @project_sponsors = @project.sponsors.public_only.order(month_donations: :desc)
+    @project_sponsors = @project.sponsors.public_only.order(year_donations: :desc)
   end
 
   def generate_address
