@@ -1,6 +1,14 @@
 blockchain_info:
   callback_secret: asdasdasdasd
 
-aa_logger:
-  info: true
-  error: true
+devise:
+  secret: "111111111111"
+
+application:
+  secret: "111111111111"
+
+# Uncomment to use airbrake/errbit
+
+# airbrake:
+#   api_key: 111111111111
+#   host: errbit.coingiving.com
