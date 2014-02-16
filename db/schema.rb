@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131118165600) do
+ActiveRecord::Schema.define(version: 20140216162246) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20131118165600) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "month_donations", limit: 8
+    t.integer  "year_donations",  limit: 8
   end
 
   add_index "deposit_addresses", ["project_id"], name: "index_deposit_addresses_on_project_id"
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 20131118165600) do
     t.string   "donation_page_url"
     t.integer  "month_donations",   limit: 8
     t.datetime "moderated_at"
+    t.integer  "year_donations",    limit: 8
   end
 
   create_table "sponsors", force: true do |t|
@@ -105,6 +107,7 @@ ActiveRecord::Schema.define(version: 20131118165600) do
     t.string   "location"
     t.boolean  "private_donations",                default: false
     t.integer  "month_donations",        limit: 8
+    t.integer  "year_donations",         limit: 8
   end
 
   add_index "sponsors", ["confirmation_token"], name: "index_sponsors_on_confirmation_token", unique: true

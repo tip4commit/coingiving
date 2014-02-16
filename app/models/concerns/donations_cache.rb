@@ -4,6 +4,7 @@ module Concerns::DonationsCache
   included do
     def update_donations_cache
       update month_donations: deposits.where("deposits.created_at > ?", Time.now - 1.month).sum(:amount)
+      update year_donations: deposits.where("deposits.created_at > ?", Time.now - 1.year).sum(:amount)
     end
 
     def self.update_donations_cache
