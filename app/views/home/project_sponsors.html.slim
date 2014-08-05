@@ -8,7 +8,7 @@
     = t 'iframe.project_sponsors_count', count: @project.sponsors.count
     - if @project.sponsors.count > 0
       |   
-      a href=project_path(@project) target='_blank' see all
+      a href=project_url(@project) target='_blank' see all
 
 - if @show_buttons
   - if current_sponsor
