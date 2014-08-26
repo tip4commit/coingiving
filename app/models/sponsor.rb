@@ -14,7 +14,7 @@ class Sponsor < ActiveRecord::Base
 
   has_many :deposit_addresses
   has_many :deposits, :through => :deposit_addresses
-  has_many :projects, -> { where('deposit_addresses.month_donations > 0') }, :through => :deposit_addresses
+  has_many :projects, -> { where('deposit_addresses.year_donations > 0') }, :through => :deposit_addresses
   # todo fix to whole time donations ^^^
 
   scope :public_only, -> { where(:private_donations => false) }
@@ -30,8 +30,8 @@ class Sponsor < ActiveRecord::Base
     if deposit_address.nil?
       0
     else
-      deposit_address.update_donations_cache if deposit_address.month_donations.nil?
-      deposit_address.month_donations
+      deposit_address.update_donations_cache if deposit_address.year_donations.nil?
+      deposit_address.year_donations
     end
   end
 

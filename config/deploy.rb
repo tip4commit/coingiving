@@ -1,5 +1,5 @@
 set :application, 'coingiving'
-set :repo_url, 'git@bitbucket.org:arsenische/coingiving.git'
+set :repo_url, 'git@github.com:tip4commit/coingiving.git'
 
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 

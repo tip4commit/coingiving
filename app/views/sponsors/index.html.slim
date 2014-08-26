@@ -5,7 +5,7 @@ p
       tr
         th Sponsor
         th Supported projects
-        th Donated/month
+        th Donated/year
     tbody
       - @sponsors.each do |sponsor|
         tr
@@ -14,5 +14,5 @@ p
             |  
             strong= link_to sponsor.name, sponsor
           td= sponsor.projects.count
-          td= btc_human sponsor.deposits.sum(:amount)
+          td= btc_human sponsor.year_donations
   = paginate @sponsors
