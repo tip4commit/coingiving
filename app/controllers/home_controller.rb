@@ -11,11 +11,11 @@ class HomeController < ApplicationController
 
   def project_sponsors
     @project = Project.find_by_url(params[:url]) || create_project(params[:url])
-    @deposit_address = @project.deposit_address(current_sponsor)
 
     if @project.nil?
       redirect_to root_path, :notice => "Project not found / creation failed"
     else
+      @deposit_address = @project.deposit_address(current_sponsor)
       limit = (params[:limit] || 6).to_i
       limit =  20 if limit > 20
       @project_sponsors = @project.sponsors.public_only.order(year_donations: :desc).first(limit)
