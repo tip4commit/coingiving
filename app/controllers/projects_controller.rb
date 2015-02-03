@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
     @deposit_address = DepositAddress.find_by_project_id_and_sponsor_id(@project.id, current_sponsor.id)
 
     if @deposit_address.nil?
-      uri = URI("http://blockchain.info/api/receive")
+      uri = URI("https://blockchain.info/api/receive")
       params = {
         method: "create",
         address: @project.bitcoin_address,
